@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-stadion-950 text-slate-100 font-sans antialiased;
+  background-image:
+    radial-gradient(circle at 15% -10%, rgba(255, 107, 0, 0.14), transparent 40%),
+    radial-gradient(circle at 95% 0%, rgba(37, 99, 235, 0.16), transparent 42%),
+    linear-gradient(180deg, #070b18 0%, #060912 100%);
+  background-attachment: fixed;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-stadion-700 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-stadion-600;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+  .glass-strong {
+    @apply bg-stadion-850/80 backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06];
+  }
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-oranje-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-stadion-950;
+  }
+  .num-input {
+    @apply w-full rounded-xl bg-stadion-900 border border-white/10 text-center text-2xl font-bold py-3 text-white focus-ring;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
