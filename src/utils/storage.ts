@@ -1,9 +1,13 @@
 import type { AppDataExport, Friend, MatchOverride, PredictionPool } from "../types";
+import type { AutoResults } from "./autoResults";
 
 export const STORAGE_KEYS = {
   matchOverrides: "wk2026.matchOverrides",
   friends: "wk2026.friends",
   pools: "wk2026.pools",
+  autoResults: "wk2026.autoResults",
+  autoSync: "wk2026.autoSync",
+  lastSynced: "wk2026.lastSynced",
 } as const;
 
 const read = <T>(key: string, fallback: T): T => {
@@ -29,6 +33,15 @@ export const saveFriends = (value: Friend[]) => write(STORAGE_KEYS.friends, valu
 
 export const loadPools = () => read<PredictionPool[]>(STORAGE_KEYS.pools, []);
 export const savePools = (value: PredictionPool[]) => write(STORAGE_KEYS.pools, value);
+
+export const loadAutoResults = () => read<AutoResults>(STORAGE_KEYS.autoResults, {});
+export const saveAutoResults = (value: AutoResults) => write(STORAGE_KEYS.autoResults, value);
+
+export const loadAutoSync = () => read<boolean>(STORAGE_KEYS.autoSync, true);
+export const saveAutoSync = (value: boolean) => write(STORAGE_KEYS.autoSync, value);
+
+export const loadLastSynced = () => read<string | null>(STORAGE_KEYS.lastSynced, null);
+export const saveLastSynced = (value: string | null) => write(STORAGE_KEYS.lastSynced, value);
 
 export const clearAppStorage = () => Object.values(STORAGE_KEYS).forEach((key) => localStorage.removeItem(key));
 

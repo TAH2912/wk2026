@@ -1,0 +1,59 @@
+name: Uitslagen bijwerken
+
+# Vangnet: haalt periodiek de WK-uitslagen op uit de openbare OpenFootball-bron
+# en schrijft ze naar results.json, zodat de app ook verse uitslagen heeft
+# wanneer niemand hem open heeft. De app haalt daarnaast live dezelfde bron op.
+
+on:
+  schedule:
+    - cron: "*/30 * * * *" # elke 30 minuten
+  workflow_dispatch: {} # handmatig te starten via de Actions-tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: results-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Haal uitslagen op uit OpenFootball
+        run: |
+          set -euo pipefail
+          curl -fsSL "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json" -o /tmp/openfootball.json
+          node -e '
+            const fs = require("fs");
+            const data = JSON.parse(fs.readFileSync("/tmp/openfootball.json", "utf8"));
+            // Bewaar alleen wedstrijden met een eindstand → klein bestand dat enkel verandert bij nieuwe uitslagen.
+            const matches = (data.matches || []).filter(
+              (m) => m && m.score && Array.isArray(m.score.ft) && m.score.ft.length === 2,
+            );
+            const out = {
+              name: "World Cup 2026 — auto results cache (bijgewerkt door GitHub Action)",
+              source: "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
+              matches,
+            };
+            const json = JSON.stringify(out, null, 2) + "\n";
+            fs.mkdirSync("public", { recursive: true });
+            fs.mkdirSync("docs", { recursive: true });
+            fs.writeFileSync("public/results.json", json);
+            fs.writeFileSync("docs/results.json", json);
+            console.log("Wedstrijden met eindstand:", matches.length);
+          '
+
+      - name: Commit bij wijziging
+        run: |
+          git config user.name "wk2026-results-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/results.json docs/results.json
+          if git diff --staged --quiet; then
+            echo "Geen nieuwe uitslagen — niets te committen."
+          else
+            git commit -m "chore: automatische uitslagen bijgewerkt"
+            git push
+          fi

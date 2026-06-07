@@ -90,7 +90,14 @@ export const SchedulePage = ({ data }: { data: AppDataContext }) => {
         ))}
       </div>
 
-      <MatchEditorModal match={editing} onClose={() => setEditing(undefined)} onSave={data.updateMatch} />
+      <MatchEditorModal
+        match={editing}
+        onClose={() => setEditing(undefined)}
+        onSave={data.updateMatch}
+        onRevert={data.removeMatchOverride}
+        isManual={editing ? editing.id in data.matchOverrides : false}
+        autoFilled={editing ? editing.id in data.autoResults : false}
+      />
     </div>
   );
 };

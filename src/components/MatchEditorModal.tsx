@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { X } from "lucide-react";
+import { RotateCcw, Wand2, X } from "lucide-react";
 import type { Match, MatchOverride, MatchStatus } from "../types";
 import { Button } from "./Button";
 
@@ -7,10 +7,19 @@ export const MatchEditorModal = ({
   match,
   onClose,
   onSave,
+  onRevert,
+  isManual = false,
+  autoFilled = false,
 }: {
   match?: Match;
   onClose: () => void;
   onSave: (matchId: string, override: MatchOverride) => void;
+  /** Verwijdert de handmatige invoer zodat de automatische uitslag weer telt. */
+  onRevert?: (matchId: string) => void;
+  /** Heeft deze wedstrijd een handmatige invoer? */
+  isManual?: boolean;
+  /** Is er een automatische uitslag beschikbaar voor deze wedstrijd? */
+  autoFilled?: boolean;
 }) => {
   const [homeScore, setHomeScore] = useState("");
   const [awayScore, setAwayScore] = useState("");
@@ -57,6 +66,17 @@ export const MatchEditorModal = ({
           </button>
         </div>
 
+        {(autoFilled || isManual) && (
+          <div className="mb-4 flex items-start gap-2 rounded-xl border border-sky-300/20 bg-sky-400/10 px-4 py-3 text-sm text-sky-100">
+            <Wand2 size={16} className="mt-0.5 shrink-0" />
+            <span>
+              {isManual
+                ? "Je hebt deze uitslag handmatig ingevuld. Handmatige invoer heeft altijd voorrang op de automatische uitslag."
+                : "Deze wedstrijd wordt automatisch bijgewerkt. Sla je hier iets op, dan wint jouw handmatige invoer."}
+            </span>
+          </div>
+        )}
+
         <div className="grid grid-cols-2 gap-4">
           <label className="space-y-2">
             <span className="text-sm font-bold text-slate-300">{match.homeTeam}</span>
@@ -90,7 +110,20 @@ export const MatchEditorModal = ({
 
         {error ? <p className="mt-4 rounded-xl border border-rose-400/30 bg-rose-500/10 px-4 py-3 text-sm font-bold text-rose-100">{error}</p> : null}
 
-        <div className="mt-6 flex justify-end gap-3">
+        <div className="mt-6 flex flex-wrap items-center justify-end gap-3">
+          {isManual && onRevert ? (
+            <Button
+              variant="secondary"
+              icon={<RotateCcw size={16} />}
+              className="mr-auto"
+              onClick={() => {
+                onRevert(match.id);
+                onClose();
+              }}
+            >
+              Terug naar automatisch
+            </Button>
+          ) : null}
           <Button variant="ghost" onClick={onClose}>Annuleren</Button>
           <Button onClick={submit}>Opslaan</Button>
         </div>

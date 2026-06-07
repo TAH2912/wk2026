@@ -13,7 +13,8 @@ export const calculatePredictionPoints = (prediction: Prediction, match: Match) 
   const predictedWinner =
     prediction.homeScore > prediction.awayScore ? match.homeTeam : prediction.awayScore > prediction.homeScore ? match.awayTeam : "draw";
 
-  if (actualWinner === "draw" && predictedWinner === "draw") return 2;
+  // Correct gelijkspel (niet exact) = juist doelsaldo (0) → gelijk aan "juiste winnaar + juist doelsaldo": 3 punten.
+  if (actualWinner === "draw" && predictedWinner === "draw") return 3;
   if (actualWinner === predictedWinner && actualDiff === predictedDiff) return 3;
   if (actualWinner === predictedWinner) return 2;
   return 0;

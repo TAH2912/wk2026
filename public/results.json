@@ -1,0 +1,5 @@
+{
+  "name": "World Cup 2026 — auto results cache (bijgewerkt door GitHub Action)",
+  "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
+  "matches": []
+}
