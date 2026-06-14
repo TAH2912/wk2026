@@ -292,6 +292,10 @@
           "penalty": true
         },
         {
+          "name": "Kai Havertz",
+          "minute": "88"
+        },
+        {
           "name": "Jamal Musiala",
           "minute": "47"
         },
@@ -302,10 +306,6 @@
         {
           "name": "Deniz Undav",
           "minute": "78"
-        },
-        {
-          "name": "Kai Havertz",
-          "minute": "88"
         }
       ],
       "goals2": [
