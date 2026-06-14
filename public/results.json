@@ -230,6 +230,36 @@
       ],
       "group": "Group D",
       "ground": "Los Angeles (Inglewood)"
+    },
+    {
+      "round": "Matchday 3",
+      "date": "2026-06-13",
+      "time": "21:00 UTC-7",
+      "team1": "Australia",
+      "team2": "Turkey",
+      "score": {
+        "ft": [
+          2,
+          0
+        ],
+        "ht": [
+          1,
+          0
+        ]
+      },
+      "goals1": [
+        {
+          "name": "Nestory Irankunda",
+          "minute": "27"
+        },
+        {
+          "name": "Connor Metcalfe",
+          "minute": "75"
+        }
+      ],
+      "goals2": [],
+      "group": "Group D",
+      "ground": "Vancouver"
     }
   ]
 }
