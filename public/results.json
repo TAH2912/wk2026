@@ -707,6 +707,37 @@
       ],
       "group": "Group J",
       "ground": "San Francisco Bay Area (Santa Clara)"
+    },
+    {
+      "round": "Matchday 7",
+      "date": "2026-06-17",
+      "time": "12:00 UTC-5",
+      "team1": "Portugal",
+      "team2": "DR Congo",
+      "score": {
+        "ft": [
+          1,
+          1
+        ],
+        "ht": [
+          1,
+          1
+        ]
+      },
+      "goals1": [
+        {
+          "name": "João Neves",
+          "minute": "6"
+        }
+      ],
+      "goals2": [
+        {
+          "name": "Yoane Wissa",
+          "minute": "45+5"
+        }
+      ],
+      "group": "Group K",
+      "ground": "Houston"
     }
   ]
 }
