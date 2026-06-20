@@ -337,6 +337,32 @@
       "ground": "Boston (Foxborough)"
     },
     {
+      "round": "Matchday 9",
+      "date": "2026-06-19",
+      "time": "18:00 UTC-4",
+      "team1": "Scotland",
+      "team2": "Morocco",
+      "score": {
+        "ft": [
+          0,
+          1
+        ],
+        "ht": [
+          0,
+          1
+        ]
+      },
+      "goals1": [],
+      "goals2": [
+        {
+          "name": "Ismael Saibari",
+          "minute": "2"
+        }
+      ],
+      "group": "Group C",
+      "ground": "Boston (Foxborough)"
+    },
+    {
       "round": "Matchday 2",
       "date": "2026-06-12",
       "time": "18:00 UTC-7",
