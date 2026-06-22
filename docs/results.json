@@ -1251,6 +1251,36 @@
       "ground": "San Francisco Bay Area (Santa Clara)"
     },
     {
+      "round": "Matchday 12",
+      "date": "2026-06-22",
+      "time": "12:00 UTC-5",
+      "team1": "Argentina",
+      "team2": "Austria",
+      "score": {
+        "ft": [
+          2,
+          0
+        ],
+        "ht": [
+          1,
+          0
+        ]
+      },
+      "goals1": [
+        {
+          "name": "Lionel Messi",
+          "minute": "38"
+        },
+        {
+          "name": "Lionel Messi",
+          "minute": "90+5"
+        }
+      ],
+      "goals2": [],
+      "group": "Group J",
+      "ground": "Dallas (Arlington)"
+    },
+    {
       "round": "Matchday 7",
       "date": "2026-06-17",
       "time": "12:00 UTC-5",
