@@ -2483,6 +2483,32 @@
       ],
       "group": "Group L",
       "ground": "Philadelphia"
+    },
+    {
+      "round": "Round of 32",
+      "num": 73,
+      "date": "2026-06-28",
+      "time": "12:00 UTC-7",
+      "team1": "South Africa",
+      "team2": "Canada",
+      "score": {
+        "ft": [
+          0,
+          1
+        ],
+        "ht": [
+          0,
+          0
+        ]
+      },
+      "goals1": [],
+      "goals2": [
+        {
+          "name": "Stephan Eustáquio",
+          "minute": "90+2"
+        }
+      ],
+      "ground": "Los Angeles (Inglewood)"
     }
   ]
 }
